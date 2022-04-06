@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; //client side routing
 
-// function NavBar(){
-//     return(
-
-//     );
-// }
-
 export const NavBar = () => {
 	return (
 		<>
