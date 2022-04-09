@@ -26,17 +26,24 @@
 // 		socket.in(data.uid).emit("fs-share", data.buffer);
 // 	});
 // });
-const express = require('express');
+const express = require("express");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const io = require('socket.io')(http);
+const server = createServer(app);
+
+const io = new Server(server, {cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },});
+
 
 io.on('connection', (socket) => {
-	console.log('There is a connection')
+	console.log(`User connected: ${socket.id}`)
 })
 
 
-server.listen(5000, () => {
-	console.log('Listening on port 5000')
+server.listen(4000, () => {
+	console.log('Listening on port 4000')
 });
