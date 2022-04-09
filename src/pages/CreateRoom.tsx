@@ -24,8 +24,8 @@ export const CreateRoom = () => {
   }
 
   const handleClick = (event: MouseEvent): void => {
-    setFlag(!flag)
-    setId(generateID())
+    setFlag(!flag);
+    setId(generateID());
   }
   // once handshake done 
   return (
