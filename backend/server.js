@@ -40,10 +40,19 @@ const io = new Server(server, {cors: {
 
 
 io.on('connection', (socket) => {
-	console.log(`User connected: ${socket.id}`)
+	console.log(`User connected: ${socket.id}`);
+	socket.on('create-room', (user) => {
+		socket.join(user.roomId);
+		console.log(`Joined Room ${user.roomId}`);
+	});
+	socket.on('join-room', (user) => {
+		socket.join(user.roomId);
+		console.log('joining')
+		socket.emit('user-connected');
+	});
 	socket.on('disconnect', () => {
 		console.log(`User Disconnected: ${socket.id}`)
-	})
+	});
 })
 
 

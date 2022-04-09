@@ -14,6 +14,9 @@ export const NavBar = () => {
 				<li>
 					<Link to="/join-room">Join Room</Link>
 				</li>
+				<li>
+					<Link to="/join-room-test">Join Room Test</Link>
+				</li>
 			</ul>
 		</>
 	);
