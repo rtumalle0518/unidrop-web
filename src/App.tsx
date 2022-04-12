@@ -10,13 +10,14 @@ import { JoinRoomTest } from "./pages/JoinRoomTest";
 function App() {
 	return (
 		<Router>
-			<NavBar />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/create-room" element={<CreateRoom />} />
-				<Route path="/join-room" element={<JoinRoom />} />
-				<Route path='/join-room-test' element={<JoinRoomTest />} />
-			</Routes>
+			<NavBar>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/create-room" element={<CreateRoom />} />
+					<Route path="/join-room" element={<JoinRoom />} />
+					<Route path="/join-room-test" element={<JoinRoomTest />} />
+				</Routes>
+			</NavBar>
 		</Router>
 	);
 }
