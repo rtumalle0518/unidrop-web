@@ -2,7 +2,7 @@ import { useState, MouseEvent, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { io } from 'socket.io-client';
 import { Room } from './Room';
-import { Socket } from 'socket.io';
+import { v4 as uuidv4 } from 'uuid';
 
 const socket = io('http://localhost:4000');
 export const CreateRoom = () => {
@@ -25,9 +25,7 @@ export const CreateRoom = () => {
   }, []);
 
   function generateID(): string {
-    return `${Math.trunc(Math.random() * 999)}-${Math.trunc(
-			Math.random() * 999
-		)}-${Math.trunc(Math.random() * 999)}`;
+    return uuidv4();
   }
 
   const handleClick = (event: MouseEvent): void => {

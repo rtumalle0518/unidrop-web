@@ -53,6 +53,9 @@ io.on('connection', (socket) => {
 		socket.emit('in-room');
 		io.emit('both-in-room');
 	});
+	socket.on('file-ready', (data, metaData) => {
+		socket.to(metaData.roomId).emit('file-received', data, metaData)
+	})
 	socket.on('disconnect', () => {
 		console.log(`User Disconnected: ${socket.id}`)
 	});
