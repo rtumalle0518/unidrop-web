@@ -19,7 +19,7 @@ export const JoinRoomTest = () => {
         })
         socket.on('in-room', () => {
             setRoomReady(true);
-            console.log('Did this work?')
+            console.log('In room')
         })
         socket.on("connect_error", (err) => {
             console.log(`connect_error due to ${err.message}`);
@@ -39,7 +39,7 @@ export const JoinRoomTest = () => {
     }
     return (
         <>
-            {roomReady ? <FileShare socket={socket}/> :
+            {roomReady ? <FileShare socket={socket} roomId={value}/> :
                 <Grid container spacing={0}>
                     <Grid item xs={4}>
                         <TextField 
