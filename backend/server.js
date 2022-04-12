@@ -43,12 +43,15 @@ io.on('connection', (socket) => {
 	console.log(`User connected: ${socket.id}`);
 	socket.on('create-room', (user) => {
 		socket.join(user.roomId);
-		console.log(`Joined Room ${user.roomId}`);
+		console.log(`User with ID: ${socket.id} joined room: ${user.roomId}`)
 	});
 	socket.on('join-room', (user) => {
 		socket.join(user.roomId);
-		console.log('joining')
-		socket.emit('user-connected');
+		console.log(`User with ID: ${socket.id} joined room: ${user.roomId}`)
+		// To the room that only has the socket that created room emit user-connected 
+		socket.to(user.roomId).emit('user-connected');
+		socket.emit('in-room');
+		io.emit('both-in-room');
 	});
 	socket.on('disconnect', () => {
 		console.log(`User Disconnected: ${socket.id}`)
