@@ -49,7 +49,7 @@ export const NavBar = ({ children }: NavBarProps) => {
 		{
 			text: "Join Room",
 			icon: <SubjectOutlined color="secondary" />,
-			path: "/join-room",
+			path: "/join-room-test",
 		},
 	];
 
@@ -62,14 +62,8 @@ export const NavBar = ({ children }: NavBarProps) => {
 				classes={{ paper: classes.drawerPaper }}
 			>
 				<div>
-					<Typography variant="h5">Bruh Text</Typography>
+					<Typography variant="h5"> UNIDROP</Typography>
 				</div>
-
-				<List>
-					<ListItem>
-						<ListItemText primary="hello" />
-					</ListItem>
-				</List>
 
 				{/* List / Links */}
 				<List>
