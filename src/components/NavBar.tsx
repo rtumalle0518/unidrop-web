@@ -12,20 +12,27 @@ import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles({
-	page: {
-		background: "#f9f9f9",
-		width: "100%",
-	},
-	drawer: {
-		width: drawerWidth,
-	},
-	drawerPaper: {
-		width: drawerWidth,
-	},
-	root: {
-		display: "flex",
-	},
+const useStyles = makeStyles((theme) => {
+	//passing in a function that returns the obj
+	return {
+		page: {
+			background: "#f9f9f9",
+			width: "100%",
+			padding: theme.spacing(3),
+		},
+		drawer: {
+			width: drawerWidth,
+		},
+		drawerPaper: {
+			width: drawerWidth,
+		},
+		root: {
+			display: "flex",
+		},
+		title: {
+			padding: theme.spacing(2),
+		},
+	};
 });
 
 type NavBarProps = {
@@ -62,7 +69,10 @@ export const NavBar = ({ children }: NavBarProps) => {
 				classes={{ paper: classes.drawerPaper }}
 			>
 				<div>
-					<Typography variant="h5"> UNIDROP</Typography>
+					<Typography variant="h4" className={classes.title}>
+						{" "}
+						UNIDROP
+					</Typography>
 				</div>
 
 				{/* List / Links */}
