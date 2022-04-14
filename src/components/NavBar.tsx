@@ -9,6 +9,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { SubjectOutlined } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const drawerWidth = 240;
 
@@ -32,6 +34,10 @@ const useStyles = makeStyles((theme) => {
 		title: {
 			padding: theme.spacing(2),
 		},
+		appbar: {
+			width: `calc(100% - ${drawerWidth}px)`, //to fit the appbar
+		},
+		toolbar: theme.mixins.toolbar,
 	};
 });
 
@@ -62,6 +68,14 @@ export const NavBar = ({ children }: NavBarProps) => {
 
 	return (
 		<div className={classes.root}>
+			<AppBar className={classes.appbar}>
+				<Toolbar>
+					<Typography>
+						Welcome to Unidrop - A fast and lightweight file sharing app!
+					</Typography>
+				</Toolbar>
+			</AppBar>
+
 			<Drawer
 				className={classes.drawer}
 				variant="permanent"
@@ -91,26 +105,10 @@ export const NavBar = ({ children }: NavBarProps) => {
 				</List>
 			</Drawer>
 
-			<div>{children}</div>
+			<div className={classes.page}>
+				<div className={classes.toolbar}></div>
+				{children}
+			</div>
 		</div>
 	);
-
-	// return (
-	// 	<>
-	// 		<ul>
-	// 			<li>
-	// 				<Link to="/">Home</Link>
-	// 			</li>
-	// 			<li>
-	// 				<Link to="/create-room">Create Room</Link>
-	// 			</li>
-	// 			<li>
-	// 				<Link to="/join-room">Join Room</Link>
-	// 			</li>
-	// 			<li>
-	// 				<Link to="/join-room-test">Join Room Test</Link>
-	// 			</li>
-	// 		</ul>
-	// 	</>
-	// );
 };
