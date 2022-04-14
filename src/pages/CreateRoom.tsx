@@ -3,10 +3,11 @@ import { Button } from '@mui/material';
 import { io } from 'socket.io-client';
 import { Room } from './Room';
 import { v4 as uuidv4 } from 'uuid';
+import { CreateRoomCard } from '../components/CreateRoomCard';
 
 const socket = io('http://localhost:4000');
 export const CreateRoom = () => {
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(false);  
   const [id, setId] = useState('');
   const [userConnected, setUserConnected] = useState(false);
   const [userWaiting, setUserWaiting] = useState(false);
@@ -46,9 +47,9 @@ export const CreateRoom = () => {
     <>
       {userWaiting ? <Room connected={userConnected} roomId={id} socket={socket}/> : 
         <>
-          {/* Probably make this form its own component */} 
-          <div>Share your files securely</div>
-          <Button onClick={handleClick}>Create Room</Button>
+          <CreateRoomCard onClick={handleClick} />
+          {/* <div>Share your files securely</div>
+          <Button onClick={handleClick}>Create Room</Button> */}
         </>
       }
     </>
