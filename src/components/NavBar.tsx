@@ -18,9 +18,15 @@ const useStyles = makeStyles((theme) => {
 	//passing in a function that returns the obj
 	return {
 		page: {
-			background: "#f9f9f9",
+			// background: "#f9f9f9",
 			width: "100%",
 			padding: theme.spacing(3),
+			// Remove everything below if you dont want the "phone look"
+			// maxWidth: "500px",
+			// height: "100%",
+			// left: "50%",
+			// transform: "translateX(-33%)",
+			// position: "fixed",
 		},
 		drawer: {
 			width: drawerWidth,
@@ -36,6 +42,12 @@ const useStyles = makeStyles((theme) => {
 		},
 		appbar: {
 			width: `calc(100% - ${drawerWidth}px)`, //to fit the appbar
+			alignItems: "center",
+		},
+		appbartext: {
+			flexgrow: 1,
+			alignItems: "center",
+			width: "100%",
 		},
 		toolbar: theme.mixins.toolbar,
 	};
@@ -70,7 +82,7 @@ export const NavBar = ({ children }: NavBarProps) => {
 		<div className={classes.root}>
 			<AppBar className={classes.appbar}>
 				<Toolbar>
-					<Typography>
+					<Typography className={classes.appbartext}>
 						Welcome to Unidrop - A fast and lightweight file sharing app!
 					</Typography>
 				</Toolbar>
@@ -84,7 +96,6 @@ export const NavBar = ({ children }: NavBarProps) => {
 			>
 				<div>
 					<Typography variant="h4" className={classes.title}>
-						{" "}
 						UNIDROP
 					</Typography>
 				</div>
