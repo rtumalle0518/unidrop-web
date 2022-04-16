@@ -29,7 +29,7 @@
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-
+const port = 4000;
 const app = express();
 const server = createServer(app);
 
@@ -62,6 +62,7 @@ io.on('connection', (socket) => {
 })
 
 
-server.listen(4000, () => {
-	console.log('Listening on port 4000')
+server.listen(process.env.PORT || port, () => {
+	console.log(`Listening on port: ${port}`)
 });
+

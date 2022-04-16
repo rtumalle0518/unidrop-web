@@ -18,7 +18,6 @@ const StyledButton = styled(Button)`
 `
 export const CreateRoomCard = ({ onClick }: RoomCardProps) => {
   return (
-    <div style={{height: '100%', width: '100%', display:'flex', alignContent: 'center', justifyContent: 'center'}}>
         <Grid 
             container
             spacing={0}
@@ -38,6 +37,5 @@ export const CreateRoomCard = ({ onClick }: RoomCardProps) => {
                 </StyledBox>
             </Card>
         </Grid>
-    </div>
   )
 }
