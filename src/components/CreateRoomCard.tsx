@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { Button, Card, CardActions, CardContent, Typography, Box } from '@mui/material';
+import { Button, Card, Grid, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles'
 
 type RoomCardProps = {
@@ -9,7 +9,7 @@ const StyledBox = styled(Box)`
     display: flex;
     align-items: center;
     justify-content: center;
-    margins: auto;
+    margin: auto;
     padding-top: 64px;
 `
 const StyledButton = styled(Button)`
@@ -18,18 +18,26 @@ const StyledButton = styled(Button)`
 `
 export const CreateRoomCard = ({ onClick }: RoomCardProps) => {
   return (
-    <StyledBox>
-        <Card>
-            <CardContent>
-                <Typography variant='h1' gutterBottom>
-                    Share your files instantly
-                </Typography>
-            </CardContent>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: 1, pb: 1 }}> */}
-            <StyledBox sx={{pb: 8}}>
-                <StyledButton onClick={onClick}>Create Room</StyledButton>
-            </StyledBox>
-        </Card>
-    </StyledBox>
+    <div style={{height: '100%', width: '100%', display:'flex', alignContent: 'center', justifyContent: 'center'}}>
+        <Grid 
+            container
+            spacing={0}
+            direction="column"
+            justifySelf={'center'}
+            justifyContent={'center'}
+        >
+            <Card>
+                <CardContent>
+                    <Typography variant='h3' gutterBottom>
+                        Share your files instantly
+                    </Typography>
+                </CardContent>
+                {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: 1, pb: 1 }}> */}
+                <StyledBox sx={{pb: 8}}>
+                    <StyledButton onClick={onClick}>Create Room</StyledButton>
+                </StyledBox>
+            </Card>
+        </Grid>
+    </div>
   )
 }

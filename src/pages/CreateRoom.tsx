@@ -44,14 +44,11 @@ export const CreateRoom = () => {
   
   // once handshake done 
   return (
-    <>
+    <div style={{height: '100%', width: '100%', display:'flex'}}>
       {userWaiting ? <Room connected={userConnected} roomId={id} socket={socket}/> : 
-        <>
-          <CreateRoomCard onClick={handleClick} />
-          {/* <div>Share your files securely</div>
-          <Button onClick={handleClick}>Create Room</Button> */}
-        </>
+        <CreateRoomCard onClick={handleClick} />
+          
       }
-    </>
+    </div>
   )
 }
