@@ -8,13 +8,14 @@ const StyledButton = styled(Button)`
     height: 100%;
     width: 100%;
 `;
-// const socket = io('http://localhost:4000');
+//const socket = io('http://localhost:4000');
 const socket = io('https://limitless-tundra-34178.herokuapp.com/');
 
 export const JoinRoomTest = () => {
     const [value, setValue] = useState('');
     const [roomReady, setRoomReady] = useState(false);
     useEffect(() => {
+        console.log(socket)
         socket.on('connect', () => {
             console.log('Hello from Join Room')
         })

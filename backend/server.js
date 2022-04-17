@@ -34,9 +34,11 @@ const app = express();
 const server = createServer(app);
 
 const io = new Server(server, {cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },});
+	origin: "http://localhost:3000",
+	methods: ["GET", "POST"],
+	},
+	maxHttpBufferSize: 1e9,
+});
 
 
 io.on('connection', (socket) => {
@@ -53,7 +55,7 @@ io.on('connection', (socket) => {
 		socket.emit('in-room');
 		io.emit('both-in-room');
 	});
-	socket.on('file-ready', (data, metaData) => {
+	socket.on('file-ready', (data, metaData) => { // change file-received to send-file-to-receiver
 		socket.to(metaData.roomId).emit('file-received', data, metaData)
 	})
 	socket.on('disconnect', () => {
