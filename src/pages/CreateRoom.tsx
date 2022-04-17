@@ -70,7 +70,7 @@ export const CreateRoom = () => {
 			) : (
 				<>
 					<div className={classes.content}>
-						<div className={classes.content}>Share your files securely</div>
+						<div> xShare your files securely</div>
 						<Button onClick={handleClick}>Create Room</Button>
 					</div>
 				</>
