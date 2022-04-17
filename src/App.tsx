@@ -5,7 +5,6 @@ import { Home } from "./pages/Home";
 import { CreateRoom } from "./pages/CreateRoom";
 import { JoinRoom } from "./pages/JoinRoom";
 import { NavBar } from "./components/NavBar";
-import { JoinRoomTest } from "./pages/JoinRoomTest";
 
 function App() {
 	return (
@@ -15,7 +14,6 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/create-room" element={<CreateRoom />} />
 					<Route path="/join-room" element={<JoinRoom />} />
-					<Route path="/join-room-test" element={<JoinRoomTest />} />
 				</Routes>
 			</NavBar>
 		</Router>
