@@ -15,7 +15,6 @@ export const JoinRoom = () => {
     const [value, setValue] = useState('');
     const [roomReady, setRoomReady] = useState(false);
     useEffect(() => {
-        console.log(socket)
         socket.on('connect', () => {
             console.log('Hello from Join Room')
         })
