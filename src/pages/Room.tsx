@@ -5,7 +5,7 @@ type RoomProps = {
   roomId: string,
   socket: Socket
 }
-
+// Change Component Names
 export const Room = ({ connected, roomId, socket }: RoomProps) => {
   useEffect(() => {
     socket.on('file-received', (data: ArrayBuffer, metaData: any) => {
@@ -20,6 +20,9 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
         link.href = reader.result as string;
         link.click()
       }
+      // If filetype pdf display a pdf lgo
+      // If filetype is jpeg, png, jpg display the img itself
+      // each of these things should have download button next to them
     })
   },[])
   return (
