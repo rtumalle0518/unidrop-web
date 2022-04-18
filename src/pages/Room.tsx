@@ -30,6 +30,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
         const file: incomingFiles = {
           fileName: metaData.fileName,
           fileType: metaData.fileType,
+          fileSize: metaData.fileSize,
           fileUrl: readerRes
         }
         setFiles((list) => [...list, file])
@@ -50,7 +51,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
           {files.map((file) => {
             return(
               <Grid item>
-                <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl}/>
+                <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl} fileSize={file.fileSize}/>
                 {/* <div>{file.fileName}</div>
                 <a href={file.fileUrl} download={file.fileName}>Download</a>
                 <Button endIcon={<FileDownloadRoundedIcon />} onClick={handleClick}>Download</Button> */}

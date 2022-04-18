@@ -34,6 +34,7 @@ export const FileShare = ({socket, roomId}: FileShareProps) => {
       const metaData: MetaData = {
         fileName: file.name,
         fileType: file.type,
+        fileSize: file.size,
         roomId: roomId,
       }
       console.log(data)
