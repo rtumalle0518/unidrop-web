@@ -14,7 +14,7 @@ import { useDropzone } from 'react-dropzone';
 import Box from '@mui/material/Box';
 import { read } from 'fs';
 import { Socket } from 'socket.io-client';
-import { metaData } from '../types'
+import { MetaData } from '../types'
 
 type FileShareProps = {
     socket: Socket,
@@ -31,9 +31,10 @@ export const FileShare = ({socket, roomId}: FileShareProps) => {
     setFiles(acceptedFiles)
     acceptedFiles.forEach(async (file: File) => {
       const data = await file.arrayBuffer();
-      const metaData: metaData = {
+      const metaData: MetaData = {
         fileName: file.name,
         fileType: file.type,
+        fileSize: file.size,
         roomId: roomId,
       }
       console.log(data)
