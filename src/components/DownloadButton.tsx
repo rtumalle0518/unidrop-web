@@ -16,9 +16,9 @@ export const DownloadButton = (file: DownloadButtonProps) => {
         link.click();
 
     };
-    
+
     return (
-        <Card sx={{width: '100%', height: '100%', marginBottom: 2, backgroundColor: '#6972a3'}}>
+        <Card sx={{width: '100%', height: '100%', marginBottom: 2, backgroundColor: '#6972a3', borderRadius: '32px'}}>
             <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Typography gutterBottom variant='h5'>
                     {file.fileName}
