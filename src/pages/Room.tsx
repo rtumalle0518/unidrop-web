@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
+import { metaData } from '../types'
 type RoomProps = {
   connected: boolean,
   roomId: string,
@@ -8,7 +9,7 @@ type RoomProps = {
 // Change Component Names
 export const Room = ({ connected, roomId, socket }: RoomProps) => {
   useEffect(() => {
-    socket.on('file-received', (data: ArrayBuffer, metaData: any) => {
+    socket.on('file-received', (data: ArrayBuffer, metaData: metaData) => {
       let buffer = []
       buffer.push(data)
       let link = document.createElement('a');
