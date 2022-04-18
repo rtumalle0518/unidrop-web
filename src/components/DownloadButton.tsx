@@ -17,7 +17,7 @@ export const DownloadButton = (file: DownloadButtonProps) => {
     };
     return (
         <Card sx={{width: '100%', height: '100%', marginBottom: 2, backgroundColor: '#6972a3'}}>
-            <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Typography gutterBottom variant='h5'>
                     {file.fileName}
                 </Typography>
@@ -25,7 +25,7 @@ export const DownloadButton = (file: DownloadButtonProps) => {
             <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FileTypeIcon fileType={file.fileType}/>
             </CardContent>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px'}}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem 1.5rem 1.5rem'}}>
                 <IconButton onClick={handleClick} color='primary' size='large' sx={{backgroundColor: '#202124'}}>
                     <FileDownloadRoundedIcon />
                 </IconButton>

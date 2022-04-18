@@ -49,7 +49,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
         <Grid container spacing={2} justifyContent="center">
           {files.map((file) => {
             return(
-              <Grid item xs={2}>
+              <Grid item>
                 <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl}/>
                 {/* <div>{file.fileName}</div>
                 <a href={file.fileUrl} download={file.fileName}>Download</a>
