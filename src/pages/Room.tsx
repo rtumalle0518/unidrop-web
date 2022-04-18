@@ -1,6 +1,6 @@
 import { useEffect, useState, MouseEvent } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { Button } from '@mui/material';
+import { Grid } from '@mui/material';
 import { MetaData } from '../types'
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import { DownloadButton } from '../components/DownloadButton';
@@ -46,19 +46,19 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
   return (
     <>
       {connected ? 
-        <div>
+        <Grid container spacing={2} justifyContent="center">
           {files.map((file) => {
             return(
-              <>
+              <Grid item xs={2}>
                 <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl}/>
                 {/* <div>{file.fileName}</div>
                 <a href={file.fileUrl} download={file.fileName}>Download</a>
                 <Button endIcon={<FileDownloadRoundedIcon />} onClick={handleClick}>Download</Button> */}
-              </>
+              </Grid>
               
             )
           })}
-        </div> 
+        </Grid> 
         :
         <div>Share this room id: {roomId}</div>
       }
