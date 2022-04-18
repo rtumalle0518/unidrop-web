@@ -1,4 +1,4 @@
-export type metaData = {
+export type MetaData = {
     fileName: string,
     fileType: string,
     fileSize?: number,

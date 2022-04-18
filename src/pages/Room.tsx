@@ -1,19 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { metaData } from '../types'
+import { Button } from '@mui/material';
+import { MetaData } from '../types'
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import { DownloadButton } from '../components/DownloadButton';
+
 type RoomProps = {
   connected: boolean,
   roomId: string,
   socket: Socket
 }
-interface incomingFiles extends metaData {
+export interface incomingFiles extends MetaData {
   fileUrl: string
 }
 // Change Component Names
 export const Room = ({ connected, roomId, socket }: RoomProps) => {
   const [files, setFiles] = useState<incomingFiles[]>([])
   useEffect(() => {
-    socket.on('file-received', (data: ArrayBuffer, metaData: metaData) => {
+    socket.on('file-received', (data: ArrayBuffer, metaData: MetaData) => {
       const buffer = [data]
       // let link = document.createElement('a');
       // link.download = metaData.fileName;
@@ -22,6 +26,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
       reader.readAsDataURL(blob)
       reader.onload = () => {
         const readerRes = reader.result as string;
+        // link.href = readerRes
         const file: incomingFiles = {
           fileName: metaData.fileName,
           fileType: metaData.fileType,
@@ -34,8 +39,10 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
       // If filetype pdf display a pdf lgo
       // If filetype is jpeg, png, jpg display the img itself
       // each of these things should have download button next to them
+      // Idea to make it look like button do what the guy did above with creating anchor tag and doing link.click when button is clicked
     })
   },[])
+  
   return (
     <>
       {connected ? 
@@ -43,8 +50,10 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
           {files.map((file) => {
             return(
               <>
-                <div>{file.fileName}</div>
+                <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl}/>
+                {/* <div>{file.fileName}</div>
                 <a href={file.fileUrl} download={file.fileName}>Download</a>
+                <Button endIcon={<FileDownloadRoundedIcon />} onClick={handleClick}>Download</Button> */}
               </>
               
             )
