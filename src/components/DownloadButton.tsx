@@ -1,7 +1,8 @@
 import { MouseEvent } from 'react';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import { MetaData } from '../types';
-import { Button } from '@mui/material';
+import { Button, IconButton, Card, CardContent, Typography} from '@mui/material';
+import { FileTypeIcon } from './FileTypeIcon'
 
 interface DownloadButtonProps extends MetaData {
     fileUrl: string
@@ -15,9 +16,18 @@ export const DownloadButton = (file: DownloadButtonProps) => {
 
     };
     return (
-        <div>
-            <div>{file.fileName}</div>
-            <Button onClick={handleClick} endIcon={<FileDownloadRoundedIcon />}>Download</Button>
-        </div>
+        <Card sx={{width: '30%', marginBottom: 2, backgroundColor: '#6972a3'}}>
+            <CardContent>
+                <Typography gutterBottom variant='h5'>
+                    {file.fileName}
+                </Typography>
+            </CardContent>
+            <CardContent>
+                <FileTypeIcon fileType={file.fileType}/>
+            </CardContent>
+            <IconButton onClick={handleClick} color='primary' size='large'>
+                <FileDownloadRoundedIcon />
+            </IconButton>
+        </Card>
     )
 }

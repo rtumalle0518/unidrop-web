@@ -42,7 +42,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
       // Idea to make it look like button do what the guy did above with creating anchor tag and doing link.click when button is clicked
     })
   },[])
-  
+
   return (
     <>
       {connected ? 
