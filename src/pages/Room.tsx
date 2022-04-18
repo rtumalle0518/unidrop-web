@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client';
 import { Grid } from '@mui/material';
 import { MetaData } from '../types'
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
-import { DownloadButton } from '../components/DownloadButton';
+import { DownloadFileCard } from '../components/DownloadFileCard';
 
 type RoomProps = {
   connected: boolean,
@@ -51,7 +51,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
           {files.map((file) => {
             return(
               <Grid item>
-                <DownloadButton fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl} fileSize={file.fileSize}/>
+                <DownloadFileCard fileName={file.fileName} fileType={file.fileType} fileUrl={file.fileUrl} fileSize={file.fileSize}/>
                 {/* <div>{file.fileName}</div>
                 <a href={file.fileUrl} download={file.fileName}>Download</a>
                 <Button endIcon={<FileDownloadRoundedIcon />} onClick={handleClick}>Download</Button> */}

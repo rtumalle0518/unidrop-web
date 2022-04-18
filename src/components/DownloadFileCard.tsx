@@ -5,10 +5,10 @@ import { Box, IconButton, Card, CardContent, Typography} from '@mui/material';
 import { FileTypeIcon } from './FileTypeIcon';
 import filesize from 'filesize';
 
-interface DownloadButtonProps extends MetaData {
+interface DownloadFileCardProps extends MetaData {
     fileUrl: string
 }
-export const DownloadButton = (file: DownloadButtonProps) => {
+export const DownloadFileCard = (file: DownloadFileCardProps) => {
     const handleClick = (event: MouseEvent): void => {
         let link = document.createElement('a');
         link.download = file.fileName;
