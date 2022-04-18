@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { metaData } from '../types'
 type RoomProps = {
@@ -6,20 +6,30 @@ type RoomProps = {
   roomId: string,
   socket: Socket
 }
+interface incomingFiles extends metaData {
+  fileUrl: string
+}
 // Change Component Names
 export const Room = ({ connected, roomId, socket }: RoomProps) => {
+  const [files, setFiles] = useState<incomingFiles[]>([])
   useEffect(() => {
     socket.on('file-received', (data: ArrayBuffer, metaData: metaData) => {
-      let buffer = []
-      buffer.push(data)
-      let link = document.createElement('a');
-      link.download = metaData.fileName;
+      const buffer = [data]
+      // let link = document.createElement('a');
+      // link.download = metaData.fileName;
       const blob = new Blob(buffer, {type: metaData.fileType})
       const reader = new FileReader();
       reader.readAsDataURL(blob)
       reader.onload = () => {
-        link.href = reader.result as string;
-        link.click()
+        const readerRes = reader.result as string;
+        const file: incomingFiles = {
+          fileName: metaData.fileName,
+          fileType: metaData.fileType,
+          fileUrl: readerRes
+        }
+        setFiles((list) => [...list, file])
+        console.log(file)
+        // link.click()
       }
       // If filetype pdf display a pdf lgo
       // If filetype is jpeg, png, jpg display the img itself
@@ -29,7 +39,18 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
   return (
     <>
       {connected ? 
-        <div>Welcome to room!</div> :
+        <div>
+          {files.map((file) => {
+            return(
+              <>
+                <div>{file.fileName}</div>
+                <a href={file.fileUrl} download={file.fileName}>Download</a>
+              </>
+              
+            )
+          })}
+        </div> 
+        :
         <div>Share this room id: {roomId}</div>
       }
     </>
