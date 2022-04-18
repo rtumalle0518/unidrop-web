@@ -87,7 +87,7 @@ export const NavBar = ({ children }: NavBarProps) => {
 
 	return (
 		<div className={classes.root}>
-			<AppBar className={classes.appbar}>
+			<AppBar className={classes.appbar} style={{backgroundColor: "#303846"}}>
 				<Toolbar>
 					<Typography component={Link} href="/" className={classes.appbartext}>
 						Welcome to Unidrop - A fast and lightweight file sharing app!
