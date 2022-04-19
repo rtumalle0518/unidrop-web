@@ -16,33 +16,46 @@ const useStyles = makeStyles((theme) => {
 				height: 40,
 			},
 		},
+		title: {
+			color: "white",
+			textAlign: "center",
+			fontSize: "1.5rem",
+		},
 	};
 });
 
 export const Home = () => {
 	const classes = useStyles();
 	return (
-		<Stack
-			spacing={6}
-			direction="row"
-			alignItems="center"
-			justifyContent="center"
-			style={{ minHeight: "75vh" }}
-		>
-			<Button
-				href="/create-room"
-				variant="outlined"
-				className={classes.buttonSize}
+		<>
+			<div className="container">
+				<div className={classes.title}>
+					<h1>Unidrop Title</h1>
+					<h4>A fast and lightweight file sharing app</h4>
+				</div>
+			</div>
+			<Stack
+				spacing={6}
+				direction="row"
+				//alignItems="center"
+				justifyContent="center"
+				//style={{ minHeight: "75vh" }}
 			>
-				Create Room
-			</Button>
-			<Button
-				href="/join-room"
-				variant="contained"
-				className={classes.buttonSize}
-			>
-				Join Room
-			</Button>
-		</Stack>
+				<Button
+					href="/create-room"
+					variant="outlined"
+					className={classes.buttonSize}
+				>
+					Create Room
+				</Button>
+				<Button
+					href="/join-room"
+					variant="contained"
+					className={classes.buttonSize}
+				>
+					Join Room
+				</Button>
+			</Stack>
+		</>
 	);
 };

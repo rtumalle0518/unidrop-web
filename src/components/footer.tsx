@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => {
 		block: {
 			background: "#F0FFF0", //"#303846",
 		},
+
+		bottom: {
+			position: "fixed", //"#303846",
+			bottom: "0",
+		},
 	};
 });
 
@@ -20,13 +25,14 @@ export const Footer = () => {
 
 	return (
 		<Drawer
-			ModalProps={{
-				keepMounted: true,
-			}}
 			PaperProps={{
 				sx: {
 					backgroundColor: "#303846",
 					color: "white",
+					position: "fixed",
+					marginTop: "-180px",
+					height: "180px",
+					bottom: "0",
 				},
 			}}
 			variant="permanent"

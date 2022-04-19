@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => {
 		appbar: {
 			//width: `calc(100% - ${drawerWidth}px)`, //to fit the appbar
 			width: "100%",
-			alignItems: "center",
+			alignItems: "left",
 		},
 		appbartext: {
 			flexgrow: 1,
@@ -89,8 +89,13 @@ export const NavBar = ({ children }: NavBarProps) => {
 		<div className={classes.root}>
 			<AppBar className={classes.appbar}>
 				<Toolbar>
-					<Typography component={Link} href="/" className={classes.appbartext}>
-						Welcome to Unidrop - A fast and lightweight file sharing app!
+					<Typography
+						variant="h4"
+						component={Link}
+						href="/"
+						className={classes.appbartext}
+					>
+						Unidrop
 					</Typography>
 				</Toolbar>
 			</AppBar>

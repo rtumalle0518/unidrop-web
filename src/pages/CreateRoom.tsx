@@ -4,9 +4,10 @@ import { io } from "socket.io-client";
 import { Room } from "./Room";
 import { v4 as uuidv4 } from "uuid";
 import { makeStyles } from "@material-ui/core";
+import { Stack } from "@mui/material";
 
 //const socket = io("http://localhost:4000");
-const socket = io('https://limitless-tundra-34178.herokuapp.com/');
+const socket = io("https://limitless-tundra-34178.herokuapp.com/");
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -70,10 +71,18 @@ export const CreateRoom = () => {
 				<Room connected={userConnected} roomId={id} socket={socket} />
 			) : (
 				<>
-					<div className={classes.content}>
-						<div> xShare your files securely</div>
-						<Button onClick={handleClick}>Create Room</Button>
-					</div>
+					<Stack
+						spacing={6}
+						direction="row"
+						alignItems="center"
+						justifyContent="center"
+						style={{ minHeight: "75vh" }}
+					>
+						<div className={classes.content}>
+							<div> Share your files securely</div>
+							<Button onClick={handleClick}>Generate Room ID</Button>
+						</div>
+					</Stack>
 				</>
 			)}
 		</>
