@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => {
 			textDecorationColor: "transparent",
 		},
 		toolbar: theme.mixins.toolbar,
+		appbarcolor: {
+			background: "#303846",
+		},
 	};
 });
 
@@ -88,7 +91,7 @@ export const NavBar = ({ children }: NavBarProps) => {
 	return (
 		<div className={classes.root}>
 			<AppBar className={classes.appbar}>
-				<Toolbar>
+				<Toolbar className={classes.appbarcolor}>
 					<Typography
 						variant="h4"
 						component={Link}

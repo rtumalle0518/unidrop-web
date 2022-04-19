@@ -30,8 +30,8 @@ export const Home = () => {
 		<>
 			<div className="container">
 				<div className={classes.title}>
-					<h1>Unidrop Title</h1>
-					<h4>A fast and lightweight file sharing app</h4>
+					<h1>Unidrop - Web</h1>
+					<h4>A fast and lightweight file sharing web application</h4>
 				</div>
 			</div>
 			<Stack

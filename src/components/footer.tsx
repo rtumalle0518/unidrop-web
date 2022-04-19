@@ -29,7 +29,7 @@ export const Footer = () => {
 				sx: {
 					backgroundColor: "#303846",
 					color: "white",
-					position: "fixed",
+
 					marginTop: "-180px",
 					height: "180px",
 					bottom: "0",
