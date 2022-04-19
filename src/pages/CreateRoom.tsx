@@ -31,6 +31,8 @@ export const CreateRoom = () => {
 	const [id, setId] = useState("");
 	const [userConnected, setUserConnected] = useState(false);
 	const [userWaiting, setUserWaiting] = useState(false);
+	const [created, setCreated] = useState('')
+	const [phoneNumber, setPhoneNumber] = useState('')
 	const classes = useStyles();
 
 	useEffect(() => {
@@ -61,6 +63,7 @@ export const CreateRoom = () => {
 		socket.emit("create-room", {
 			roomId: room,
 		});
+		setCreated(room)
 	};
 
 	// once handshake done
@@ -71,8 +74,15 @@ export const CreateRoom = () => {
 			) : (
 				<>
 					<div className={classes.content}>
-						<div> xShare your files securely</div>
+						<div> Share your files securely</div>
 						<Button onClick={handleClick}>Create Room</Button>
+						{/* {created && 
+							<div>
+								<div>Need to send to a phone number?</div>
+
+							</div>
+							
+						} */}
 					</div>
 				</>
 			)}
