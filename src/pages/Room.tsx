@@ -74,6 +74,13 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
 					style={{ minHeight: "75vh" }}
 				>
 					<div> Share this room id: {roomId}</div>
+					<button
+						onClick={() => {
+							navigator.clipboard.writeText(roomId);
+						}}
+					>
+						Copy
+					</button>
 				</Stack>
 			)}
 		</>
