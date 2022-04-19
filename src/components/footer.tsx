@@ -54,6 +54,11 @@ export const Footer = () => {
 					<div>GitHub - Web</div>
 					<div>GitHub - Mobile</div>
 				</div>
+				<div className="column">
+					<h4>Information</h4>
+					<div>Contact Us</div>
+					<div>About</div>
+				</div>
 			</Grid>
 		</Drawer>
 	);
