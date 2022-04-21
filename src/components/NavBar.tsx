@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => {
 		appbar: {
 			//width: `calc(100% - ${drawerWidth}px)`, //to fit the appbar
 			width: "100%",
-			alignItems: "center",
+			alignItems: "left",
 		},
 		appbartext: {
 			flexgrow: 1,
@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => {
 			textDecorationColor: "transparent",
 		},
 		toolbar: theme.mixins.toolbar,
+		appbarcolor: {
+			background: "#303846",
+		},
 	};
 });
 
@@ -87,7 +90,7 @@ export const NavBar = ({ children }: NavBarProps) => {
 
 	return (
 		<div className={classes.root}>
-			<AppBar className={classes.appbar} style={{backgroundColor: "#303846"}}>
+			<AppBar className={classes.appbar} style={{ backgroundColor: "#303846" }}>
 				<Toolbar>
 					<Typography component={Link} href="/" className={classes.appbartext}>
 						Welcome to Unidrop - A fast and lightweight file sharing app!
