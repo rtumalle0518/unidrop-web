@@ -28,7 +28,7 @@ export const FileShare = ({socket, roomId}: FileShareProps) => {
     
   }, [])
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(acceptedFiles)
+    setFiles((list) => [...list, ...acceptedFiles])
     acceptedFiles.forEach(async (file: File) => {
       const data = await file.arrayBuffer();
       const metaData: MetaData = {
