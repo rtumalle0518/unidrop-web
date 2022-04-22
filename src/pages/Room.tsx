@@ -1,10 +1,10 @@
-import { useEffect, useState, MouseEvent } from "react";
-import { io, Socket } from "socket.io-client";
+import { useEffect, useState } from "react";
+import { Socket } from "socket.io-client";
 import { Grid } from "@mui/material";
 import { MetaData } from "../types";
-import FileDownloadRoundedIcon from "@mui/icons-material/FileDownloadRounded";
 import { DownloadFileCard } from "../components/DownloadFileCard";
 import { Stack } from "@mui/material";
+import { ShareRoomCard } from "../components/ShareRoomCard";
 
 type RoomProps = {
 	connected: boolean;
@@ -73,14 +73,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
 					justifyContent="center"
 					style={{ minHeight: "75vh" }}
 				>
-					<div> Share this room id: {roomId}</div>
-					<button
-						onClick={() => {
-							navigator.clipboard.writeText(roomId);
-						}}
-					>
-						Copy
-					</button>
+					<ShareRoomCard roomId={roomId}/>
 				</Stack>
 			)}
 		</>
