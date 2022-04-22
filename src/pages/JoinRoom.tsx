@@ -1,15 +1,15 @@
 import { useEffect, MouseEvent, useState } from 'react'
 import { io, Socket } from 'socket.io-client'
-import { Button, Card, TextField, CardContent, Typography, Box, CardActionArea, CardMedia, Stack } from '@mui/material';
+import { Button, Card, TextField, CardContent, Typography, Box, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FileShare } from './FileShare';
 import { QrReader } from 'react-qr-reader';
 import { ViewFinder } from '../components/ViewFinder';
 
-const StyledButton = styled(Button)`
-    height: 100%;
-    width: 100%;
-`;
+// const StyledButton = styled(Button)`
+//     height: 100%;
+//     width: 100%;
+// `;
 //const socket = io('http://localhost:4000');
 // const socket = io('https://limitless-tundra-34178.herokuapp.com/');
 let socket: Socket;
@@ -18,28 +18,6 @@ const StyledBox = styled(Box)`
     align-items: center;
     justify-content: center;
     margin: auto;
-`
-
-const StyledCardActionArea = styled(CardActionArea)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-    // border: 1px solid #cccccc;
-    transition: all 0.5s;
-    
-    &:hover {
-        background-color: rgb(219, 255, 219);
-        border-color: rgb(0, 255, 0);
-        box-shadow: 0px 2px 15px #0000ff61;
-        padding: 1.5rem 3rem 1.5rem;
-        font-weight: bolder;
-        &::after {
-            opacity: 1;
-            transition: all 0.5s;
-            color: #ffffff;
-        }
-    }
 `
 export const JoinRoom = () => {
     const [data, setData] = useState('No Result');

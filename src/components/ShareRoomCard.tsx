@@ -1,5 +1,5 @@
-import { MouseEvent, useEffect, useState } from 'react';
-import { Button, Card, Tooltip, CardContent, Typography, Box, CardActionArea } from '@mui/material';
+import { useState } from 'react';
+import { Card, Tooltip, CardContent, Typography, Box, CardActionArea } from '@mui/material';
 import { styled } from '@mui/material/styles'
 import QRCode from "react-qr-code";
 
@@ -12,10 +12,10 @@ const StyledBox = styled(Box)`
     justify-content: center;
     margin: auto;
 `
-const StyledButton = styled(Button)`
-    height: 80px;
-    width: 160px;
-`
+// const StyledButton = styled(Button)`
+//     height: 80px;
+//     width: 160px;
+// `
 
 const StyledCardActionArea = styled(CardActionArea)`
     display: flex;
