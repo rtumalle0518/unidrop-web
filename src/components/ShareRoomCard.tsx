@@ -3,7 +3,7 @@ import { Button, Card, Tooltip, CardContent, Typography, Box, CardActionArea } f
 import { styled } from '@mui/material/styles'
 import QRCode from "react-qr-code";
 
-type RoomCardProps = {
+type ShareRoomCardProps = {
     roomId: string;
 }
 const StyledBox = styled(Box)`
@@ -38,7 +38,7 @@ const StyledCardActionArea = styled(CardActionArea)`
         }
     }
 `
-export const ShareRoomCard = ({ roomId }: RoomCardProps) => {
+export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
     const [copied, setCopied] = useState(false);
     
     return (
