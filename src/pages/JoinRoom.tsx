@@ -1,5 +1,5 @@
 import { useEffect, MouseEvent, useState } from 'react'
-import { io } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 import { Button, TextField, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FileShare } from './FileShare';
@@ -9,12 +9,14 @@ const StyledButton = styled(Button)`
     width: 100%;
 `;
 //const socket = io('http://localhost:4000');
-const socket = io('https://limitless-tundra-34178.herokuapp.com/');
+// const socket = io('https://limitless-tundra-34178.herokuapp.com/');
+let socket: Socket;
 
 export const JoinRoom = () => {
     const [value, setValue] = useState('');
     const [roomReady, setRoomReady] = useState(false);
     useEffect(() => {
+        socket = io('https://limitless-tundra-34178.herokuapp.com/');
         socket.on('connect', () => {
             console.log('Hello from Join Room')
         })
@@ -34,7 +36,8 @@ export const JoinRoom = () => {
         console.log(value)
         socket.emit('join-room', {
             roomId: value,
-            socketId: socket.id
+            socketId: socket.id,
+            //Give information of platform used this is file sender btw
         })
         
     }

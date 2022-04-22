@@ -1,13 +1,14 @@
 import { useState, MouseEvent, useEffect } from "react";
 import { Button } from "@mui/material";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { Room } from "./Room";
 import { v4 as uuidv4 } from "uuid";
 import { makeStyles } from "@material-ui/core";
 import { Stack } from "@mui/material";
 
 //const socket = io("http://localhost:4000");
-const socket = io("https://limitless-tundra-34178.herokuapp.com/");
+// const socket = io("https://limitless-tundra-34178.herokuapp.com/");
+let socket: Socket;
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -37,6 +38,7 @@ export const CreateRoom = () => {
 	const classes = useStyles();
 
 	useEffect(() => {
+		socket = io("https://limitless-tundra-34178.herokuapp.com/");
 		socket.on("connect", () => {
 			console.log("Hello from create room");
 		});
