@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import { read } from 'fs';
 import { Socket } from 'socket.io-client';
 import { MetaData } from '../types'
+import filesize from 'filesize';
 
 type FileShareProps = {
     socket: Socket,
@@ -23,14 +24,16 @@ type FileShareProps = {
 
 
 export const FileShare = ({socket, roomId}: FileShareProps) => {
-  const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<File[]>([]);
+  const [progress, setProgress] = useState<number>();
   useEffect(() => {
     
   }, [])
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(acceptedFiles)
+    setFiles((list) => [...list, ...acceptedFiles])
     acceptedFiles.forEach(async (file: File) => {
       const data = await file.arrayBuffer();
+      
       const metaData: MetaData = {
         fileName: file.name,
         fileType: file.type,
@@ -62,15 +65,20 @@ export const FileShare = ({socket, roomId}: FileShareProps) => {
     })
   }
   return (
-    <Box component="div" sx={{ p: 2, border: '1px dashed grey' }}>
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {
-          isDragActive ?
-          <p style={{textAlign: 'center'}}>Drop the files here ...</p> :
-          <p style={{textAlign: 'center'}}>Drag 'n' drop some files here, or click to select files</p>
-        }
-      </div>
-    </Box>
+    <>
+      <Box component="div" sx={{ p: 2, border: '1px dashed grey' }}>
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          {
+            isDragActive ?
+            <p style={{textAlign: 'center'}}>Drop the files here ...</p> :
+            <p style={{textAlign: 'center'}}>Drag 'n' drop some files here, or click to select files</p>
+          }
+        </div>
+      </Box>
+      {files.map(file => {
+        return <div>{file.name} - {filesize(file.size, {base: 2, round: 0, standard: 'jedec'})}</div>
+      })}
+    </>
   )
 }
