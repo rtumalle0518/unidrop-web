@@ -6,6 +6,8 @@ import { styled } from '@mui/material/styles'
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 import { storage } from '../firebase/firebaseConfig';
 const UniDropIcon = require('../images/UniDropIcon.png')
 // require('dotenv').config();
@@ -124,7 +126,7 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
                 setError(false);
                 setSubmitting(false);
                 setMessage({
-                    to: '',
+                    to: '1',
                     body: roomId,
                     mediaUrl: []
                 });
@@ -136,7 +138,7 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
     }
     return (
         <div>
-            <Card sx={{paddingRight:'5px', paddingLeft:'5px', borderRadius: '24px', display: 'flex'}}>
+            <Card sx={{paddingRight:'5px', paddingLeft:'10px', borderRadius: '24px', display: 'flex'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginRight: '64px', marginLeft: '8px' }}>
                     <CardContent sx={{marginTop: '16px'}}>
                         <Typography variant='h4' gutterBottom>
@@ -160,7 +162,7 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
                     </Tooltip>
                     {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: 1, pb: 1 }}> */}
                     <StyledBox sx={{flexDirection:'column', paddingTop:'32px'}}>
-                        <TextField 
+                        {/* <TextField 
                                 label={error ? 'Enter Valid Phone Number' : 'Enter Phone Number'}
                                 variant="outlined"
                                 name="phone"
@@ -169,6 +171,16 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
                                     setMessage({...message, to: e.target.value})
                                 }}
                                 error={error}
+                        /> */}
+                        <PhoneInput 
+                            country={'us'}
+                            value={message.to}
+                            onChange={e => {
+                                setMessage({...message, to: e})
+                                console.log(e)
+                            }}
+                            countryCodeEditable={false}
+                            onlyCountries={['us', 'ca']}
                         />
                         <LoadingButton onClick={onSubmit} loading={submitting}>Send Room ID</LoadingButton>
                     </StyledBox>
