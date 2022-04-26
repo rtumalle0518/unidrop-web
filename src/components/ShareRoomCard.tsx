@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
 import { Card, Tooltip, CardContent, Typography, Box, CardActionArea, TextField, Button } from '@mui/material';
 import { styled } from '@mui/material/styles'
 // import QRCode from "react-qr-code";
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase/firebaseConfig';
 const UniDropIcon = require('../images/UniDropIcon.png')
-
+// require('dotenv').config();
 
 type ShareRoomCardProps = {
     roomId: string;
@@ -46,22 +48,67 @@ const StyledCardActionArea = styled(CardActionArea)`
 type messageBody = {
     to: string;
     body: string;
+    mediaUrl: string[];
 }
 export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
-    
+    const [qrurl, setQrurl] = useState('');
     const [copied, setCopied] = useState(false);
     const [error, setError] = useState(false)
     const [submitting, setSubmitting] = useState(false);
     const [message, setMessage] = useState<messageBody>(
         {
             to: '',
-            body: roomId
+            body: roomId,
+            mediaUrl: []
         });
-
     
+    useEffect(() => {
+        console.log(process.env.REACT_APP_FIREBASE_API_KEY)
+        const storageRef = ref(storage, `files/${roomId}`)
+        QRCode.toDataURL(roomId)
+            .then(dataurl => {
+                const buff = atob(dataurl.split(',')[1])
+                const mimeString = dataurl.split(',')[0].split(':')[1].split(';')[0]
+                const ab = new ArrayBuffer(buff.length)
+                const ia = new Uint8Array(ab);
+                for (var i = 0; i < buff.length; i++) {
+                    ia[i] = buff.charCodeAt(i);
+                }
+                const blob = new Blob([ab], {type: mimeString});
+              
+                const uploadTask = uploadBytesResumable(storageRef, blob);
+                uploadTask.on('state_changed', 
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+                        setQrurl(downloadUrl);
+                        setMessage({...message, mediaUrl:[downloadUrl]})
+                        console.log('File available at', downloadUrl);
+                    })
+                }
+                )
+            })
+        
+    }, [])
+
+
     const onSubmit = () => {
         setSubmitting(true)
-        fetch(`http://localhost:4000/api/messages`, {
+        fetch(`https://limitless-tundra-34178.herokuapp.com/api/messages`, {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',
@@ -78,7 +125,8 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
                 setSubmitting(false);
                 setMessage({
                     to: '',
-                    body: roomId
+                    body: roomId,
+                    mediaUrl: []
                 });
             }).catch(reason => {
                 setSubmitting(false);
