@@ -6,7 +6,6 @@ import { CreateRoom } from "./pages/CreateRoom";
 import { NavBar } from "./components/NavBar";
 import { JoinRoom } from "./pages/JoinRoom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { Footer } from "./components/footer";
 
 const theme = createTheme({
 	palette: {
@@ -27,7 +26,6 @@ function App() {
 						<Route path="/create-room" element={<CreateRoom />} />
 						<Route path="/join-room" element={<JoinRoom />} />
 					</Routes>
-					<Footer />
 				</ThemeProvider>
 			</NavBar>
 		</Router>

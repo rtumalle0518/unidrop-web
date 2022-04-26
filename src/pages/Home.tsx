@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { Stack } from "@mui/material";
 import { sizing } from "@mui/system";
 import { makeStyles } from "@material-ui/core";
+import { Footer } from "../components/footer";
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme) => {
 			textAlign: "center",
 			fontSize: "1.5rem",
 		},
+		center: {
+			padding: "48px",
+		},
 	};
 });
 
@@ -28,34 +32,37 @@ export const Home = () => {
 	const classes = useStyles();
 	return (
 		<>
-			<div className="container">
-				<div className={classes.title}>
-					<h1>Unidrop - Web</h1>
-					<p>A fast, secure, and lightweight file sharing web application</p>
+			<div className={classes.center}>
+				<div className="container">
+					<div className={classes.title}>
+						<h1>Unidrop - Web</h1>
+						<p>A fast, secure, and lightweight file sharing web application</p>
+					</div>
 				</div>
+				<Stack
+					spacing={6}
+					direction="row"
+					//alignItems="center"
+					justifyContent="center"
+					//style={{ minHeight: "75vh" }}
+				>
+					<Button
+						href="/create-room"
+						variant="outlined"
+						className={classes.buttonSize}
+					>
+						Create Room
+					</Button>
+					<Button
+						href="/join-room"
+						variant="contained"
+						className={classes.buttonSize}
+					>
+						Join Room
+					</Button>
+				</Stack>
 			</div>
-			<Stack
-				spacing={6}
-				direction="row"
-				//alignItems="center"
-				justifyContent="center"
-				//style={{ minHeight: "75vh" }}
-			>
-				<Button
-					href="/create-room"
-					variant="outlined"
-					className={classes.buttonSize}
-				>
-					Create Room
-				</Button>
-				<Button
-					href="/join-room"
-					variant="contained"
-					className={classes.buttonSize}
-				>
-					Join Room
-				</Button>
-			</Stack>
+			<Footer />
 		</>
 	);
 };
