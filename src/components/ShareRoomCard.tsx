@@ -1,7 +1,12 @@
 import { useState } from 'react';
-import { Card, Tooltip, CardContent, Typography, Box, CardActionArea } from '@mui/material';
+import QRCode from 'qrcode';
+import { Card, Tooltip, CardContent, Typography, Box, CardActionArea, TextField, Button } from '@mui/material';
 import { styled } from '@mui/material/styles'
-import QRCode from "react-qr-code";
+// import QRCode from "react-qr-code";
+import { QRCodeSVG } from 'qrcode.react';
+import LoadingButton from '@mui/lab/LoadingButton';
+const UniDropIcon = require('../images/UniDropIcon.png')
+
 
 type ShareRoomCardProps = {
     roomId: string;
@@ -38,9 +43,49 @@ const StyledCardActionArea = styled(CardActionArea)`
         }
     }
 `
+type messageBody = {
+    to: string;
+    body: string;
+}
 export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
-    const [copied, setCopied] = useState(false);
     
+    const [copied, setCopied] = useState(false);
+    const [error, setError] = useState(false)
+    const [submitting, setSubmitting] = useState(false);
+    const [message, setMessage] = useState<messageBody>(
+        {
+            to: '',
+            body: roomId
+        });
+
+    
+    const onSubmit = () => {
+        setSubmitting(true)
+        fetch(`http://localhost:4000/api/messages`, {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(message),
+          })
+            .then(res => {
+                res.json()
+                console.log(res)
+            })
+            .then(data => {
+                console.log(data)
+                setError(false);
+                setSubmitting(false);
+                setMessage({
+                    to: '',
+                    body: roomId
+                });
+            }).catch(reason => {
+                setSubmitting(false);
+                setError(true);
+                console.log(reason)
+            });
+    }
     return (
         <div>
             <Card sx={{paddingRight:'5px', paddingLeft:'5px', borderRadius: '24px', display: 'flex'}}>
@@ -66,14 +111,36 @@ export const ShareRoomCard = ({ roomId }: ShareRoomCardProps) => {
                         </StyledCardActionArea>
                     </Tooltip>
                     {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: 1, pb: 1 }}> */}
-                    <StyledBox sx={{pb: 8, paddingTop:'64px'}}>
+                    <StyledBox sx={{flexDirection:'column', paddingTop:'32px'}}>
+                        <TextField 
+                                label={error ? 'Enter Valid Phone Number' : 'Enter Phone Number'}
+                                variant="outlined"
+                                name="phone"
+                                value={message.to}
+                                onChange={e => {
+                                    setMessage({...message, to: e.target.value})
+                                }}
+                                error={error}
+                        />
+                        <LoadingButton onClick={onSubmit} loading={submitting}>Send Room ID</LoadingButton>
+                    </StyledBox>
+                    <StyledBox sx={{pb: 8, paddingTop:'32px'}}>
                         <Typography variant='h6' gutterBottom>
                             or join with QR Code
                         </Typography>
                     </StyledBox>
                 </Box>
                 <StyledBox sx={{marginRight: '32px'}}>
-                    <QRCode value={roomId} />
+                    <QRCodeSVG 
+                        value={roomId}
+                        size={256}
+                        imageSettings={{
+                            src: UniDropIcon,
+                            excavate: true,
+                            width: 256 * .2,
+                            height: 256 * .2 
+                        }}
+                    />
                 </StyledBox>
                 
             </Card>
