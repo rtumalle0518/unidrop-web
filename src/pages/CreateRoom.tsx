@@ -12,12 +12,28 @@ let socket: Socket;
 
 const useStyles = makeStyles((theme) => {
 	return {
+		buttonSize: {
+			width: 400,
+			height: 50,
+
+			[theme.breakpoints.down("sm")]: {
+				width: 200,
+				height: 40,
+			},
+		},
+
 		page: {
 			background: "#FF7F50",
 		},
 		content: {
 			// background: "#f9f9f9",
 			textAlign: "center",
+		},
+		title: {
+			color: "white",
+			textAlign: "center",
+			fontSize: "1.5rem",
+			padding: "20px",
 		},
 		app: {
 			maxWidth: "500px",
@@ -81,8 +97,14 @@ export const CreateRoom = () => {
 						style={{ minHeight: "75vh" }}
 					>
 						<div className={classes.content}>
-							<div> Share your files securely</div>
-							<Button onClick={handleClick}>Generate Room ID</Button>
+							<div className={classes.title}> Share your files securely</div>
+							<Button
+								variant="outlined"
+								className={classes.buttonSize}
+								onClick={handleClick}
+							>
+								Generate Room ID
+							</Button>
 						</div>
 					</Stack>
 				</>

@@ -73,7 +73,7 @@ export const Room = ({ connected, roomId, socket }: RoomProps) => {
 					justifyContent="center"
 					style={{ minHeight: "75vh" }}
 				>
-					<ShareRoomCard roomId={roomId}/>
+					<ShareRoomCard roomId={roomId} />
 				</Stack>
 			)}
 		</>

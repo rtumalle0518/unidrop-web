@@ -6,6 +6,7 @@ import { Drawer } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -45,14 +46,35 @@ export const Footer = () => {
 				alignItems="center"
 			>
 				<div className="column">
-					<h4>Capstone Group 50</h4>
+					<h4>Web-app Team</h4>
 					<div>Randy Tumalle</div>
 					<div>Ayo Obaisi</div>
 				</div>
 				<div className="column">
+					<h4>Mobile Team</h4>
+					<div>Charles Trangay</div>
+					<div>Tyron Tucker</div>
+					<div>Memphis Chen</div>
+				</div>
+				<div className="column">
 					<h4>Resources</h4>
-					<div>GitHub - Web</div>
-					<div>GitHub - Mobile</div>
+					<div>
+						<a
+							href="https://github.com/rtumalle0518/unidrop-web"
+							style={{ color: "white" }}
+						>
+							GitHub - Web
+						</a>
+					</div>
+
+					<div>
+						<a
+							href="https://github.com/Borality/UniDrop_mobile"
+							style={{ color: "white" }}
+						>
+							GitHub - Mobile
+						</a>
+					</div>
 				</div>
 				<div className="column">
 					<h4>Information</h4>
